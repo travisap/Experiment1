@@ -26,15 +26,15 @@ export function DealCard({ deal, onEdit, onDelete }: DealCardProps) {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 hover:shadow-md transition-shadow">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4 hover:shadow-md transition-shadow">
       <div className="flex justify-between items-start mb-2">
-        <h3 className="font-semibold text-gray-900 text-sm truncate flex-1">
+        <h3 className="font-semibold text-gray-900 dark:text-gray-100 text-sm truncate flex-1">
           {deal.title}
         </h3>
         <div className="flex gap-1 ml-2">
           <button
             onClick={() => onEdit(deal)}
-            className="text-gray-400 hover:text-blue-600 transition-colors"
+            className="text-gray-400 dark:text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
             title="Edit deal"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -43,7 +43,7 @@ export function DealCard({ deal, onEdit, onDelete }: DealCardProps) {
           </button>
           <button
             onClick={() => onDelete(deal.id)}
-            className="text-gray-400 hover:text-red-600 transition-colors"
+            className="text-gray-400 dark:text-gray-500 hover:text-red-600 dark:hover:text-red-400 transition-colors"
             title="Delete deal"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -53,19 +53,19 @@ export function DealCard({ deal, onEdit, onDelete }: DealCardProps) {
         </div>
       </div>
 
-      <p className="text-gray-600 text-xs mb-3">{deal.company}</p>
+      <p className="text-gray-600 dark:text-gray-400 text-xs mb-3">{deal.company}</p>
 
       <div className="flex justify-between items-center">
-        <span className="text-lg font-bold text-green-600">
+        <span className="text-lg font-bold text-green-600 dark:text-green-400">
           {formatCurrency(deal.value)}
         </span>
-        <span className="text-xs text-gray-400">
+        <span className="text-xs text-gray-400 dark:text-gray-500">
           {formatDate(deal.updatedAt)}
         </span>
       </div>
 
       {deal.notes && (
-        <p className="mt-2 text-xs text-gray-500 line-clamp-2">{deal.notes}</p>
+        <p className="mt-2 text-xs text-gray-500 dark:text-gray-400 line-clamp-2">{deal.notes}</p>
       )}
     </div>
   );
