@@ -39,7 +39,7 @@ export default function Home() {
 
   const totalValue = deals.reduce((sum, deal) => sum + deal.value, 0);
   const activeDeals = deals.filter(
-    (d) => d.stage !== 'closed_won' && d.stage !== 'closed_lost'
+    (d) => d.stage !== 'closed_transaction' && d.stage !== 'non_active'
   ).length;
 
   const formatCurrency = (value: number) => {
