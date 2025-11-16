@@ -13,23 +13,41 @@ interface DealModalProps {
 export function DealModal({ isOpen, onClose, onSave, deal }: DealModalProps) {
   const [title, setTitle] = useState('');
   const [company, setCompany] = useState('');
-  const [value, setValue] = useState('');
+  const [askingPrice, setAskingPrice] = useState('');
   const [stage, setStage] = useState<DealStage>('lead');
   const [notes, setNotes] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
+  const [industry, setIndustry] = useState('');
+  const [revenue, setRevenue] = useState('');
+  const [earnings, setEarnings] = useState('');
+  const [source, setSource] = useState('');
 
   useEffect(() => {
     if (deal) {
       setTitle(deal.title);
       setCompany(deal.company);
-      setValue(deal.value.toString());
+      setAskingPrice(deal.askingPrice.toString());
       setStage(deal.stage);
       setNotes(deal.notes || '');
+      setCity(deal.city || '');
+      setState(deal.state || '');
+      setIndustry(deal.industry || '');
+      setRevenue(deal.revenue?.toString() || '');
+      setEarnings(deal.earnings?.toString() || '');
+      setSource(deal.source || '');
     } else {
       setTitle('');
       setCompany('');
-      setValue('');
+      setAskingPrice('');
       setStage('lead');
       setNotes('');
+      setCity('');
+      setState('');
+      setIndustry('');
+      setRevenue('');
+      setEarnings('');
+      setSource('');
     }
   }, [deal, isOpen]);
 
@@ -38,9 +56,15 @@ export function DealModal({ isOpen, onClose, onSave, deal }: DealModalProps) {
     onSave({
       title,
       company,
-      value: parseFloat(value) || 0,
+      askingPrice: parseFloat(askingPrice) || 0,
       stage,
       notes: notes || undefined,
+      city: city || undefined,
+      state: state || undefined,
+      industry: industry || undefined,
+      revenue: revenue ? parseFloat(revenue) : undefined,
+      earnings: earnings ? parseFloat(earnings) : undefined,
+      source: source || undefined,
     });
     onClose();
   };
@@ -94,19 +118,103 @@ export function DealModal({ isOpen, onClose, onSave, deal }: DealModalProps) {
               />
             </div>
 
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  City
+                </label>
+                <input
+                  type="text"
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+                  placeholder="e.g., Austin"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  State
+                </label>
+                <input
+                  type="text"
+                  value={state}
+                  onChange={(e) => setState(e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+                  placeholder="e.g., TX"
+                />
+              </div>
+            </div>
+
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                Value ($) *
+                Industry
+              </label>
+              <input
+                type="text"
+                value={industry}
+                onChange={(e) => setIndustry(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+                placeholder="e.g., Manufacturing"
+              />
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Revenue ($)
+                </label>
+                <input
+                  type="number"
+                  value={revenue}
+                  onChange={(e) => setRevenue(e.target.value)}
+                  min="0"
+                  step="1000"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+                  placeholder="e.g., 5000000"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Earnings ($)
+                </label>
+                <input
+                  type="number"
+                  value={earnings}
+                  onChange={(e) => setEarnings(e.target.value)}
+                  min="0"
+                  step="1000"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+                  placeholder="e.g., 1000000"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                Asking Price ($) *
               </label>
               <input
                 type="number"
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
+                value={askingPrice}
+                onChange={(e) => setAskingPrice(e.target.value)}
                 required
                 min="0"
                 step="100"
                 className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
-                placeholder="e.g., 50000"
+                placeholder="e.g., 5000000"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                Source
+              </label>
+              <input
+                type="text"
+                value={source}
+                onChange={(e) => setSource(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+                placeholder="e.g., Broker, Direct Outreach"
               />
             </div>
 

@@ -157,6 +157,44 @@ npm run start   # Start production server
 
 ---
 
+## Phase 7: Add Deal Sourcing Fields
+
+### Overview
+Add key deal sourcing characteristics to track for private market acquisitions.
+
+### New Fields to Add
+- City (text)
+- State (text)
+- Industry (text)
+- Revenue (currency)
+- Earnings (currency)
+- Asking Price (rename existing `value` field)
+- Source (text)
+
+### Tasks
+- [x] Update Deal interface in `src/types/deal.ts` - add new optional fields
+- [x] Update DealModal form with new input fields
+- [x] Update DealCard to display new information
+- [x] Ensure backward compatibility with existing deals
+
+### Review
+
+**Files Modified:**
+- `src/types/deal.ts` - Added city, state, industry, revenue, earnings, source fields; renamed value to askingPrice
+- `src/components/DealModal.tsx` - Added form inputs for all new fields with grid layout for City/State and Revenue/Earnings
+- `src/components/DealCard.tsx` - Displays location, industry, revenue/earnings, source when available
+- `src/app/page.tsx` - Updated pipeline value calculation to use askingPrice
+- `src/components/StageColumn.tsx` - Updated column total calculation to use askingPrice
+
+**Implementation Details:**
+- All new fields are optional to maintain backward compatibility with existing deals
+- Revenue and Earnings display as currency when provided
+- Location shows as "City, State" format
+- Source displays at bottom of card
+- Form uses 2-column grid for related fields (City/State, Revenue/Earnings)
+
+---
+
 ## Phase 6 Review: Dark Mode Implementation
 
 ### Files Modified

@@ -11,11 +11,17 @@ export interface Deal {
   id: string;
   title: string;
   company: string;
-  value: number;
+  askingPrice: number;
   stage: DealStage;
   createdAt: string;
   updatedAt: string;
   notes?: string;
+  city?: string;
+  state?: string;
+  industry?: string;
+  revenue?: number;
+  earnings?: number;
+  source?: string;
 }
 
 export const DEAL_STAGES: { key: DealStage; label: string; color: string }[] = [

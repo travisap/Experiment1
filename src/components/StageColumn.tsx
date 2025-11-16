@@ -18,7 +18,7 @@ export function StageColumn({ stage, deals, onEditDeal, onDeleteDeal, onMoveDeal
   });
 
   const stageInfo = DEAL_STAGES.find((s) => s.key === stage)!;
-  const totalValue = deals.reduce((sum, deal) => sum + deal.value, 0);
+  const totalValue = deals.reduce((sum, deal) => sum + deal.askingPrice, 0);
 
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('en-US', {
