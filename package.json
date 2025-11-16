@@ -1,0 +1,16 @@
+{
+  "name": "dark-mode-responsive",
+  "version": "1.0.0",
+  "description": "A dark mode responsive web application",
+  "main": "index.html",
+  "scripts": {
+    "start": "open index.html"
+  },
+  "keywords": [
+    "dark-mode",
+    "responsive",
+    "web-app"
+  ],
+  "author": "",
+  "license": "MIT"
+}
