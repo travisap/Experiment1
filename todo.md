@@ -172,10 +172,26 @@ Add key deal sourcing characteristics to track for private market acquisitions.
 - Source (text)
 
 ### Tasks
-- [ ] Update Deal interface in `src/types/deal.ts` - add new optional fields
-- [ ] Update DealModal form with new input fields
-- [ ] Update DealCard to display new information
-- [ ] Ensure backward compatibility with existing deals
+- [x] Update Deal interface in `src/types/deal.ts` - add new optional fields
+- [x] Update DealModal form with new input fields
+- [x] Update DealCard to display new information
+- [x] Ensure backward compatibility with existing deals
+
+### Review
+
+**Files Modified:**
+- `src/types/deal.ts` - Added city, state, industry, revenue, earnings, source fields; renamed value to askingPrice
+- `src/components/DealModal.tsx` - Added form inputs for all new fields with grid layout for City/State and Revenue/Earnings
+- `src/components/DealCard.tsx` - Displays location, industry, revenue/earnings, source when available
+- `src/app/page.tsx` - Updated pipeline value calculation to use askingPrice
+- `src/components/StageColumn.tsx` - Updated column total calculation to use askingPrice
+
+**Implementation Details:**
+- All new fields are optional to maintain backward compatibility with existing deals
+- Revenue and Earnings display as currency when provided
+- Location shows as "City, State" format
+- Source displays at bottom of card
+- Form uses 2-column grid for related fields (City/State, Revenue/Earnings)
 
 ---
 
