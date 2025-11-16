@@ -42,15 +42,30 @@ Build a beautiful, clean, and simple deal flow management app with a central sta
 
 ### Phase 6: Dark Mode Implementation
 - [ ] Configure Tailwind for dark mode (class-based)
-- [ ] Add dark theme CSS variables
-- [ ] Create theme state management with localStorage
+  - Add `darkMode: 'class'` to tailwind.config.ts
+- [ ] Add dark theme CSS variables to globals.css
+  - Add dark mode body styles for proper backgrounds
+- [ ] Update layout.tsx with ThemeProvider wrapper
+  - Create ThemeProvider component to manage theme state
+  - Handle localStorage persistence
+  - Detect system preferences as default
+  - Apply 'dark' class to html element
 - [ ] Add dark: variants to DealCard component
+  - Card background: white → gray-800
+  - Text colors: gray-900 → gray-100
+  - Border colors: gray-200 → gray-700
 - [ ] Add dark: variants to StageColumn component
-- [ ] Add dark: variants to StatusBoard component
+  - Column body: gray-50 → gray-900
+  - Header text and badges
 - [ ] Add dark: variants to DealModal component
-- [ ] Update layout.tsx to support dark class on html
-- [ ] Add theme toggle button in page.tsx header
-- [ ] Respect system preferences as default
+  - Modal background: white → gray-800
+  - Form inputs with dark styling
+  - Button variants for dark mode
+- [ ] Update page.tsx with theme toggle button
+  - Add toggle button in header (sun/moon icons)
+  - Connect to theme context
+  - Style header, stats bar, and loading state for dark mode
+- [ ] Test and verify all components work in both modes
 
 ## Key Design Decisions
 
