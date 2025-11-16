@@ -2,11 +2,34 @@ import { Deal } from '@/types/deal';
 
 const STORAGE_KEY = 'deal-flow-deals';
 
+// Migrate old deals that have 'value' instead of 'askingPrice'
+const migrateDeals = (deals: unknown[]): Deal[] => {
+  return deals.map((deal) => {
+    const d = deal as Record<string, unknown>;
+    // If deal has 'value' but not 'askingPrice', migrate it
+    if ('value' in d && !('askingPrice' in d)) {
+      const { value, ...rest } = d;
+      return { ...rest, askingPrice: value } as unknown as Deal;
+    }
+    return d as unknown as Deal;
+  });
+};
+
 export const storage = {
   getDeals: (): Deal[] => {
     if (typeof window === 'undefined') return [];
     const data = localStorage.getItem(STORAGE_KEY);
-    return data ? JSON.parse(data) : [];
+    if (!data) return [];
+
+    const parsed = JSON.parse(data);
+    const migrated = migrateDeals(parsed);
+
+    // Save migrated data back if needed
+    if (JSON.stringify(parsed) !== JSON.stringify(migrated)) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(migrated));
+    }
+
+    return migrated;
   },
 
   saveDeals: (deals: Deal[]): void => {
