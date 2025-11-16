@@ -157,6 +157,28 @@ npm run start   # Start production server
 
 ---
 
+## Phase 7: Add Deal Sourcing Fields
+
+### Overview
+Add key deal sourcing characteristics to track for private market acquisitions.
+
+### New Fields to Add
+- City (text)
+- State (text)
+- Industry (text)
+- Revenue (currency)
+- Earnings (currency)
+- Asking Price (rename existing `value` field)
+- Source (text)
+
+### Tasks
+- [ ] Update Deal interface in `src/types/deal.ts` - add new optional fields
+- [ ] Update DealModal form with new input fields
+- [ ] Update DealCard to display new information
+- [ ] Ensure backward compatibility with existing deals
+
+---
+
 ## Phase 6 Review: Dark Mode Implementation
 
 ### Files Modified
